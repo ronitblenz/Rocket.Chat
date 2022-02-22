@@ -4,6 +4,7 @@ import _ from 'underscore';
 import { Base } from './_Base';
 import Rooms from './Rooms';
 import { settings } from '../../../settings/server/functions/settings';
+import { otrSystemMessages } from '../../../otr/lib/constants';
 
 export class Messages extends Base {
 	constructor() {
@@ -900,14 +901,44 @@ export class Messages extends Base {
 		return this.createWithTypeRoomIdMessageAndUser('ult', roomId, message, user, extraData);
 	}
 
+	createUserConvertChannelToTeamWithRoomIdAndUser(roomId, roomName, user, extraData) {
+		return this.createWithTypeRoomIdMessageAndUser('user-converted-to-team', roomId, roomName, user, extraData);
+	}
+
+	createUserConvertTeamToChannelWithRoomIdAndUser(roomId, roomName, user, extraData) {
+		return this.createWithTypeRoomIdMessageAndUser('user-converted-to-channel', roomId, roomName, user, extraData);
+	}
+
+	createUserRemoveRoomFromTeamWithRoomIdAndUser(roomId, roomName, user, extraData) {
+		return this.createWithTypeRoomIdMessageAndUser('user-removed-room-from-team', roomId, roomName, user, extraData);
+	}
+
+	createUserDeleteRoomFromTeamWithRoomIdAndUser(roomId, roomName, user, extraData) {
+		return this.createWithTypeRoomIdMessageAndUser('user-deleted-room-from-team', roomId, roomName, user, extraData);
+	}
+
+	createUserAddRoomToTeamWithRoomIdAndUser(roomId, roomName, user, extraData) {
+		return this.createWithTypeRoomIdMessageAndUser('user-added-room-to-team', roomId, roomName, user, extraData);
+	}
+
 	createUserRemovedWithRoomIdAndUser(roomId, user, extraData) {
 		const message = user.username;
 		return this.createWithTypeRoomIdMessageAndUser('ru', roomId, message, user, extraData);
 	}
 
+	createUserRemovedFromTeamWithRoomIdAndUser(roomId, user, extraData) {
+		const message = user.username;
+		return this.createWithTypeRoomIdMessageAndUser('removed-user-from-team', roomId, message, user, extraData);
+	}
+
 	createUserAddedWithRoomIdAndUser(roomId, user, extraData) {
 		const message = user.username;
 		return this.createWithTypeRoomIdMessageAndUser('au', roomId, message, user, extraData);
+	}
+
+	createUserAddedToTeamWithRoomIdAndUser(roomId, user, extraData) {
+		const message = user.username;
+		return this.createWithTypeRoomIdMessageAndUser('added-user-to-team', roomId, message, user, extraData);
 	}
 
 	createCommandWithRoomIdAndUser(command, roomId, user, extraData) {
@@ -962,6 +993,11 @@ export class Messages extends Base {
 	createSubscriptionRoleRemovedWithRoomIdAndUser(roomId, user, extraData) {
 		const message = user.username;
 		return this.createWithTypeRoomIdMessageAndUser('subscription-role-removed', roomId, message, user, extraData);
+	}
+
+	createOtrSystemMessagesWithRoomIdAndUser(roomId, user, id, extraData) {
+		const message = user.username;
+		return this.createWithTypeRoomIdMessageAndUser(id, roomId, message, user, extraData);
 	}
 
 	// REMOVE
