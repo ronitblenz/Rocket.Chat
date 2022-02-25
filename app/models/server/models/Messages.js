@@ -4,7 +4,6 @@ import _ from 'underscore';
 import { Base } from './_Base';
 import Rooms from './Rooms';
 import { settings } from '../../../settings/server/functions/settings';
-import { otrSystemMessages } from '../../../otr/lib/constants';
 
 export class Messages extends Base {
 	constructor() {
