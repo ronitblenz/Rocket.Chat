@@ -47,7 +47,7 @@ export type MessageTypesValues =
 	| 'room_e2e_disabled'
 	| 'livechat-close'
 	| 'otr'
-	| 'otr-ack';
+	| 'otr-ack'
 	| VoipMessageTypesValues
 	| OmnichannelTypesValues
 	| OtrSystemMessages;
